@@ -4,13 +4,13 @@ import java.util.List;
 
 public class Route {
     private List<Vector> vectorList;
-    private int routeLengthP;
-    private int routeLengthV;
+    private int routeLengthPoints;
+    private int routeLengthVectors;
 
     public Route(List<Vector> vectorList) {
         this.vectorList = vectorList;
-        this.routeLengthP = countRouteLengthP(vectorList);
-        this.routeLengthV = vectorList.size();
+        this.routeLengthPoints = countRouteLengthP(vectorList);
+        this.routeLengthVectors = vectorList.size();
     }
 
     int countRouteLengthP(List<Vector> vectorList){
@@ -22,10 +22,10 @@ public class Route {
     }
 
     public int getRouteLengthP() {
-        return routeLengthP;
+        return routeLengthPoints;
     }
     public int getRouteLengthV() {
-        return routeLengthV;
+        return routeLengthVectors;
     }
     public List<Vector> getVectorList() { return vectorList; }
 }

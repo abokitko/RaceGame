@@ -12,6 +12,7 @@ public class Transport {
         this.engine = engine;
         this.wheels = wheels;
         this.transportMaxSpeed = countMaxSpeed(engine, wheels);
+        this.name = name;
     }
 
     public void setCurrentPosition(Point currentPosition) {

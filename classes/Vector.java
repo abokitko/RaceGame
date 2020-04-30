@@ -10,14 +10,9 @@ public class Vector {
 
     public Vector(List<Point> pointList, String material) {
         this.pointList = pointList;
-        this.material = mate
-    rial;
-        this.vectorLength = countVectorLength(pointList);
+        this.material = material;
+        this.vectorLength = pointList.size();
         this.vectorMaxSpeed = countVectorMaxSpeed(material);
-    }
-
-    int countVectorLength(List<Point> pointList){
-        return pointList.size();
     }
 
     int countVectorMaxSpeed(String material){
