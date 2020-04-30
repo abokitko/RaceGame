@@ -5,6 +5,7 @@ public class Transport {
     private Engine engine;
     private Wheels wheels;
     private int transportMaxSpeed;
+    private int realSpeed;
     private Point currentPosition;
 
     public Transport(String name, Engine engine, Wheels wheels) {
@@ -16,10 +17,12 @@ public class Transport {
     public void setCurrentPosition(Point currentPosition) {
         this.currentPosition = currentPosition;
     }
-
     public Point getCurrentPosition() {
         return currentPosition;
     }
+
+    public void setRealSpeed(int realSpeed) { this.realSpeed = realSpeed; }
+    public int getRealSpeed() { return realSpeed; }
 
     int countMaxSpeed(Engine engine, Wheels wheels){
         return (int) (engine.getEngineMaxSpeed() * (1 - wheels.getWheelCoeffFriction()));

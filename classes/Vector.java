@@ -26,6 +26,8 @@ public class Vector {
         if (material == "highway") return 5;
         else return 0;
     }
+
+    public String getMaterial() { return material; }
     public int getVectorLength() {
         return vectorLength;
     }

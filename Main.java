@@ -46,7 +46,7 @@ public class Main {
 
         Engine engine1 = new Engine("ROAR7", 11);
         Engine engine2 = new Engine("MOTO414", 8);
-        Engine engine3 = new Engine("whoo12", 5);
+        Engine engine3 = new Engine("whoo12", 6);
 
         Wheels wheels1 = new Wheels("Tiger", 0.4);
         Wheels wheels2 = new Wheels("SOSO", 0.6);
@@ -77,6 +77,7 @@ public class Main {
                     break;
                 }
             }
+            System.out.println(" ");
         } while (flag);
     }
 }

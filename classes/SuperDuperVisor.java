@@ -52,10 +52,11 @@ public class SuperDuperVisor {
 
 
         int speed = countSpeed(transport);        //how much point we can jump over
+        transport.setRealSpeed(speed);      //control real speed in a transport
 
         int currentVectorSize = currentVector.getPointList().size();
 
-        if(iP + speed <= currentVectorSize){     // we can't jump farther than currVector
+        if(iP + speed < currentVectorSize){     // we can't jump farther than currVector
             transport.setCurrentPosition(currentVector.getPointList().get(iP+speed)); //newPos = currPos + speed |currVector
         } else if(iV == route.getRouteLengthV()-1) {     //we can jump over currVector, but it is last
             return 0;                                    // finish
@@ -66,11 +67,13 @@ public class SuperDuperVisor {
 
         public void showInfo(Transport transport){
         if (transport.equals(yourCar)){
-            System.out.print("You: ");
+            System.out.print("You:   ");
         }
         else System.out.print("Enemy: ");
         System.out.print(" X: " + transport.getCurrentPosition().getX());
-        System.out.println(" Y: " + transport.getCurrentPosition().getY());
+        System.out.print(" Y: " + transport.getCurrentPosition().getY());
+        System.out.print(" speed is: " + transport.getRealSpeed());
+        System.out.println("   material is " + getVectorByPoint(transport.getCurrentPosition()).getMaterial());
     }
 
 }
