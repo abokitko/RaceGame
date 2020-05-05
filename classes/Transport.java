@@ -15,25 +15,34 @@ public class Transport {
         this.name = name;
     }
 
-    public void setCurrentPosition(Point currentPosition) {
-        this.currentPosition = currentPosition;
-    }
-    public Point getCurrentPosition() {
-        return currentPosition;
-    }
+    public Transport(){
 
-    public void setRealSpeed(int realSpeed) { this.realSpeed = realSpeed; }
-    public int getRealSpeed() { return realSpeed; }
+    }
 
     int countMaxSpeed(Engine engine, Wheels wheels){
         return (int) (engine.getEngineMaxSpeed() * (1 - wheels.getWheelCoeffFriction()));
     }
 
+    //getters
+    public Point getCurrentPosition() {
+        return currentPosition;
+    }
+    public int getRealSpeed() { return realSpeed; }
     public int getTransportMaxSpeed() {
         return transportMaxSpeed;
     }
-
     public String getName() {
         return name;
     }
+    public Engine getEngine() { return engine;}
+
+    //setters
+    public void setCurrentPosition(Point currentPosition) {
+        this.currentPosition = currentPosition;
+    }
+    public void setRealSpeed(int realSpeed) { this.realSpeed = realSpeed; }
+    public void setName(String name) { this.name = name; }
+    public void setEngine(Engine engine) { this.engine = engine;}
+    public void setWheels(Wheels wheels) { this.wheels = wheels; }
+    public void setTransportMaxSpeed(int transportMaxSpeed) { this.transportMaxSpeed = transportMaxSpeed; }
 }

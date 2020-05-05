@@ -6,7 +6,7 @@ public class SuperDuperVisor {
 
     private List<Transport> transportList;
     private Route route;
-    private int choice;
+    private String choice;
     private Transport yourCar;
 
     public SuperDuperVisor(List<Transport> transportList, Route route) {
@@ -14,11 +14,11 @@ public class SuperDuperVisor {
         this.route = route;
     }
 
-    public void showStart(){                  // intro info
+    public void showStart() throws Exception {                  // intro info
         Scanner in = new Scanner(System.in);
-        System.out.print("Which car do you prefer? Write number: ");
-        this.choice = in.nextInt();
-        this.yourCar = transportList.get(choice);
+        System.out.print("Which car do you prefer? (Truck, PassengerCar, SportCar): ");
+        this.choice = in.next();
+        this.yourCar = TransportFactory.createTransport(choice);
         System.out.println("Your car is " + yourCar.getName());
 
         for(int i = 0; i < transportList.size(); i++){
@@ -66,7 +66,7 @@ public class SuperDuperVisor {
     }
 
         public void showInfo(Transport transport){
-        if (transport.equals(yourCar)){
+        if (transport.getEngine().equals(yourCar.getEngine())){
             System.out.print("You:   ");
         }
         else System.out.print("Enemy: ");

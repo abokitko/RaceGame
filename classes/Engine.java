@@ -12,4 +12,5 @@ public class Engine {
     public int getEngineMaxSpeed() {
         return engineMaxSpeed;
     }
+    public String getEngineName() { return engineName; }
 }
