@@ -15,10 +15,6 @@ public class Transport {
         this.name = name;
     }
 
-    public Transport(){
-
-    }
-
     int countMaxSpeed(Engine engine, Wheels wheels){
         return (int) (engine.getEngineMaxSpeed() * (1 - wheels.getWheelCoeffFriction()));
     }

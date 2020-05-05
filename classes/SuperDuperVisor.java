@@ -14,7 +14,7 @@ public class SuperDuperVisor {
         this.route = route;
     }
 
-    public void showStart() throws Exception {                  // intro info
+    public void showStart()  {                  // intro info
         Scanner in = new Scanner(System.in);
         System.out.print("Which car do you prefer? (Truck, PassengerCar, SportCar): ");
         this.choice = in.next();

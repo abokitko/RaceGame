@@ -6,7 +6,6 @@ public class Truck extends Transport{
     public Truck(String name, Engine engine, Wheels wheels) {
         super(name, engine, wheels);
     }
-    public Truck(){}
 
     public void setWeight(int weight) {
         this.weight = weight;

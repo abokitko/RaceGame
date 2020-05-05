@@ -19,7 +19,7 @@ public class Main {
 
             ArrayList<Point> pointList = new ArrayList<>();
             for(int i = 0; i < points; i++){
-                pointList.add(new Point((int)(i+1+Math.random()), (int)(i+1+Math.random())));
+                pointList.add(new Point((int)(i+1+Math.random()*2), (int)(i+1+Math.random()*2)));
             }
             if(j%2 ==0) vectorList.add( new Vector(pointList,"ground"));
             else vectorList.add( new Vector(pointList,"highway"));
