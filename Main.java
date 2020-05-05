@@ -2,47 +2,31 @@ import classes.*;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Scanner;
 
 public class Main {
-    public static void main(String[] args) {
-        Point A = new Point(0,0);
-        Point B = new Point(1,1);
-        Point C = new Point(2,2);
-        Point D = new Point(3,3);
-        Point E = new Point(4,4);
-        Point F = new Point(5,5);
-        Point G = new Point(6,6);
-        Point H = new Point(7,7);
-        Point I = new Point(8,8);
-        Point J = new Point(9,9);
-        Point K = new Point(10,10);
+    public static void main(String[] args) throws Exception {
+        Scanner scan = new Scanner(System.in);
 
-        List<Point> pointListAE = new ArrayList<>();
-        List<Point> pointListFK = new ArrayList<>();
+        System.out.println("How many vectors do you want to set? ");
+        int vectors = scan.nextInt();
 
-        pointListAE.add(A);
-        pointListAE.add(B);
-        pointListAE.add(C);
-        pointListAE.add(D);
-        pointListAE.add(E);
+        ArrayList<Vector> vectorList = new ArrayList<>();
+        for(int j = 0; j < vectors; j++){
 
-        pointListFK.add(F);
-        pointListFK.add(G);
-        pointListFK.add(H);
-        pointListFK.add(I);
-        pointListFK.add(J);
-        pointListFK.add(K);
+            System.out.println("How many points do you want to set? ");
+            int points = scan.nextInt();
 
-        Vector AE = new Vector(pointListAE,"ground");
-        Vector FK = new Vector(pointListFK, "highway");
+            ArrayList<Point> pointList = new ArrayList<>();
+            for(int i = 0; i < points; i++){
+                pointList.add(new Point((int)(i+1+Math.random()), (int)(i+1+Math.random())));
+            }
+            if(j%2 ==0) vectorList.add( new Vector(pointList,"ground"));
+            else vectorList.add( new Vector(pointList,"highway"));
+        }
 
-        List<Vector> vectorList = new ArrayList<>();
+        Route route= new Route(vectorList);
 
-        vectorList.add(AE);
-        vectorList.add(FK);
-
-        Route AEFK= new Route(vectorList);
-      // route block
 
         Engine engine1 = new Engine("ROAR7", 11);
         Engine engine2 = new Engine("MOTO414", 8);
@@ -64,9 +48,10 @@ public class Main {
 
 
 
-        SuperDuperVisor lena = new SuperDuperVisor(transportList, AEFK);
+        SuperDuperVisor lena = new SuperDuperVisor(transportList, route);
 
         lena.showStart();
+
         boolean flag = true;
         do {
             for(int i = 0; i < transportList.size(); i++){
