@@ -1,4 +1,8 @@
-package classes;
+package classes.Transport;
+import classes.Engine.Engine;
+import classes.Transport.*;
+import classes.Wheels.Wheels;
+
 import java.lang.reflect.InvocationTargetException;
 
 
@@ -7,7 +11,7 @@ public class TransportFactory {
     public static Transport createTransport(String name) {
         System.out.println();
         try {
-            Class<?> transportClass = Class.forName("classes."+name);
+            Class<?> transportClass = Class.forName("classes.Transport."+name);
 
             //args in Transport Constructor
             Engine eng2 = new Engine("aloha", 6);

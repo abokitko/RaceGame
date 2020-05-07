@@ -1,4 +1,7 @@
 package classes;
+import classes.Route.*;
+import classes.Transport.*;
+
 import java.util.List;
 import java.util.Scanner;
 
@@ -26,7 +29,7 @@ public class SuperDuperVisor {
         }
     }
 
-    Vector getVectorByPoint(Point position){         // find out on which vector we are now
+    public Vector getVectorByPoint(Point position){         // find out on which vector we are now
         for(int i = 0; i < route.getRouteLengthV(); i++){
             if(route.getVectorList().get(i).getPointList().indexOf(position) > -1) {
                 return route.getVectorList().get(i);
@@ -48,7 +51,7 @@ public class SuperDuperVisor {
 
         Vector currentVector = getVectorByPoint(position);  //in which Vector the position is
         int iV =  route.getVectorList().indexOf(currentVector); //index of the current vector in the route
-        int iP = currentVector.getPointList().indexOf(position); //index of the point we are in the current classes.Vector
+        int iP = currentVector.getPointList().indexOf(position); //index of the point we are in the current classes.Route.Route.Vector
 
 
         int speed = countSpeed(transport);        //how much point we can jump over
@@ -65,7 +68,7 @@ public class SuperDuperVisor {
             return 1;
     }
 
-        public void showInfo(Transport transport){
+    public void showInfo(Transport transport){
         if (transport.getEngine().equals(yourCar.getEngine())){
             System.out.print("You:   ");
         }
