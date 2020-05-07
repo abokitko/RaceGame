@@ -4,29 +4,43 @@ import classes.Transport.*;
 import classes.Wheels.Wheels;
 
 import java.lang.reflect.InvocationTargetException;
+import java.util.ArrayList;
 
 
 public class TransportFactory {
+    private Engine[] engineList;
+    private Wheels[] wheelsList;
 
-    public static Transport createTransport(String name) {
+    public TransportFactory(Engine[] engineList, Wheels[] wheelsList) {
+        this.engineList = engineList;
+        this.wheelsList = wheelsList;
+    }
+
+    public Transport createTransport(String name) {
         System.out.println();
         try {
-            Class<?> transportClass = Class.forName("classes.Transport."+name);
+            Class<?> transportClass = Class.forName("classes.Transport." + name);
 
             //args in Transport Constructor
-            Engine eng2 = new Engine("aloha", 6);
-            Wheels wheels2 = new Wheels("fasters", 0.6);
-            String name2 = "example";
-
+            Engine engine = engineList[(short)(Math.random()*engineList.length)];
+            Wheels wheels = wheelsList[(short)(Math.random()*wheelsList.length)];
+            String yourName = name;
 
             //create
-            Object[] args = {name2, eng2, wheels2};
+            Object[] args = {yourName, engine, wheels};
             return (Transport) transportClass.getConstructor(String.class, Engine.class, Wheels.class).newInstance(args);
         }   catch (ClassNotFoundException | IllegalAccessException | InvocationTargetException | InstantiationException | NoSuchMethodException e) {
             e.printStackTrace();
             throw new RuntimeException();
-        }
+            }
+    }
 
+    public void setEngineList(Engine[] engineList) {
+        this.engineList = engineList;
+    }
+
+    public void setWheelsList(Wheels[] wheelsList) {
+        this.wheelsList = wheelsList;
     }
 }
 

@@ -7,26 +7,12 @@ import java.util.Scanner;
 
 public class SuperDuperVisor {
 
-    private List<Transport> transportList;
     private Route route;
     private String choice;
-    private Transport yourCar;
+    private Transport yourTransport;
 
-    public SuperDuperVisor(List<Transport> transportList, Route route) {
-        this.transportList = transportList;
+    public SuperDuperVisor(Route route) {
         this.route = route;
-    }
-
-    public void showStart()  {                  // intro info
-        Scanner in = new Scanner(System.in);
-        System.out.print("Which car do you prefer? (Truck, PassengerCar, SportCar): ");
-        this.choice = in.next();
-        this.yourCar = TransportFactory.createTransport(choice);
-        System.out.println("Your car is " + yourCar.getName());
-
-        for(int i = 0; i < transportList.size(); i++){
-            transportList.get(i).setCurrentPosition(route.getVectorList().get(0).getPointList().get(0)); //set all on the first point
-        }
     }
 
     public Vector getVectorByPoint(Point position){         // find out on which vector we are now
@@ -69,7 +55,7 @@ public class SuperDuperVisor {
     }
 
     public void showInfo(Transport transport){
-        if (transport.getEngine().equals(yourCar.getEngine())){
+        if (transport.getEngine().equals(yourTransport.getEngine())){
             System.out.print("You:   ");
         }
         else System.out.print("Enemy: ");
@@ -79,4 +65,7 @@ public class SuperDuperVisor {
         System.out.println("   material is " + getVectorByPoint(transport.getCurrentPosition()).getMaterial());
     }
 
+    public void setYourTransport(Transport yourCar) {
+        this.yourTransport = yourCar;
+    }
 }

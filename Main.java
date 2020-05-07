@@ -1,4 +1,10 @@
 import classes.*;
+import classes.Engine.Engine;
+import classes.Route.Route;
+import classes.Route.Vector;
+import classes.Route.Point;
+import classes.Transport.*;
+import classes.Wheels.Wheels;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -14,7 +20,7 @@ public class Main {
         ArrayList<Vector> vectorList = new ArrayList<>();
         for(int j = 0; j < vectors; j++){
 
-            System.out.println("How many points do you want to set? ");
+            System.out.print("How many points do you want to set on " + (j+1) +" vector? ");
             int points = scan.nextInt();
 
             ArrayList<Point> pointList = new ArrayList<>();
@@ -27,32 +33,43 @@ public class Main {
 
         Route route= new Route(vectorList);
 
-
         Engine engine1 = new Engine("ROAR7", 11);
         Engine engine2 = new Engine("MOTO414", 8);
         Engine engine3 = new Engine("whoo12", 6);
+
+        Engine[] engines = {engine1, engine2, engine3};
 
         Wheels wheels1 = new Wheels("Tiger", 0.4);
         Wheels wheels2 = new Wheels("SOSO", 0.6);
         Wheels wheels3 = new Wheels("Lizard", 0.8);
 
-        Transport sporty = new SportCar("Cheetah",engine1, wheels1);
-        Transport carry = new PassengerCar("Zebra", engine2, wheels2);
-        Transport trucky = new Truck("Elephant", engine3, wheels3);
+        Wheels[] wheels = {wheels1, wheels2, wheels3};
 
-        List<Transport> transportList = new ArrayList<>();
+        SuperDuperVisor lena = new SuperDuperVisor(route);
 
-        transportList.add(sporty);
-        transportList.add(carry);
-        transportList.add(trucky);
+            TransportFactory Charlies = new TransportFactory(engines, wheels);
 
+            List<Transport> transportList = new ArrayList<>();
+            Scanner in = new Scanner(System.in);
+            System.out.print("Which car do you prefer? (Truck, PassengerCar, SportCar): ");
+            String name = in.next();
+            Transport yourTransport = Charlies.createTransport(name);
+            lena.setYourTransport(yourTransport);
+            System.out.println("Your car is " + name);
+            transportList.add(yourTransport);
 
-
-        SuperDuperVisor lena = new SuperDuperVisor(transportList, route);
-
-        lena.showStart();
+            System.out.print("How many players(enemies) do you want? ");
+            int k = in.nextInt();
+            for(int i = 0; i<k; i++){
+                System.out.print("Truck/PassengerCar/SportCar ");
+                String enemyName = in.next();
+                transportList.add(Charlies.createTransport(enemyName));
+            }
 
         boolean flag = true;
+        for(int i = 0; i < transportList.size(); i++){
+            transportList.get(i).setCurrentPosition(route.getVectorList().get(0).getPointList().get(0)); //set all on the first point
+        }
         do {
             for(int i = 0; i < transportList.size(); i++){
                 if(lena.tick(transportList.get(i)) != 0)
