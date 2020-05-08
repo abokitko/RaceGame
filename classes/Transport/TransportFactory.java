@@ -16,6 +16,12 @@ public class TransportFactory {
         this.wheelsList = wheelsList;
     }
 
+    /**
+     * According to the name create new object of Name class with random engine
+     * and wheels from engineList and wheelsList
+     * @param name
+     * @return object (Transport/heir of Transport)
+     */
     public Transport createTransport(String name) {
         System.out.println();
         try {

@@ -15,6 +15,11 @@ public class SuperDuperVisor {
         this.route = route;
     }
 
+    /**
+     * Find out in which vector the point (position) is located in
+     * @param position (Point)
+     * @return Vector
+     */
     public Vector getVectorByPoint(Point position){         // find out on which vector we are now
         for(int i = 0; i < route.getRouteLengthV(); i++){
             if(route.getVectorList().get(i).getPointList().indexOf(position) > -1) {
@@ -24,6 +29,12 @@ public class SuperDuperVisor {
         return null;
     }
 
+    /**
+     * Knowing about the speed that is possible on the route,
+     * count the real max possible transport speed
+     * @param transport
+     * @return int (Real speed)
+     */
     int countSpeed(Transport transport){
         Point position = transport.getCurrentPosition();
         if(getVectorByPoint(position).getVectorMaxSpeed()    // speed = min{ vectorMaxSpeed; transportMaxSpeed}
@@ -32,6 +43,13 @@ public class SuperDuperVisor {
         } else return getVectorByPoint(position).getVectorMaxSpeed();
     }
 
+    /**
+     * According to the real speed and position of the transort
+     * set new position to it
+     * @param transport
+     * @return 0 if the route is end (new position > length of the route)
+     * 1 if new position is on the route
+     */
     public int tick(Transport transport){
         Point position = transport.getCurrentPosition();
 
@@ -54,11 +72,13 @@ public class SuperDuperVisor {
             return 1;
     }
 
+    /**
+     * show current transport position (point). its speed,
+     * and point material (vector's material)
+     * @param transport
+     */
     public void showInfo(Transport transport){
-        if (transport.getEngine().equals(yourTransport.getEngine())){
-            System.out.print("You:   ");
-        }
-        else System.out.print("Enemy: ");
+
         System.out.print(" X: " + transport.getCurrentPosition().getX());
         System.out.print(" Y: " + transport.getCurrentPosition().getY());
         System.out.print(" speed is: " + transport.getRealSpeed());

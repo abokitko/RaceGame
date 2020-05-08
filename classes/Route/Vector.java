@@ -16,6 +16,11 @@ public class Vector {
         this.vectorMaxSpeed = countVectorMaxSpeed(material);
     }
 
+    /**
+     * According to the material set max speed allowed on the vector
+     * @param material
+     * @return int (max speed on the vector)
+     */
     int countVectorMaxSpeed(String material){
         if (material == "ice")  return 1;
         if (material == "ground") return 2;
@@ -25,11 +30,7 @@ public class Vector {
     }
 
     public String getMaterial() { return material; }
-    public int getVectorLength() {
-        return vectorLength;
-    }
+    public int getVectorLength() { return vectorLength; }
     public List<Point> getPointList() { return pointList; }
-    public int getVectorMaxSpeed() {
-        return vectorMaxSpeed;
-    }
+    public int getVectorMaxSpeed() { return vectorMaxSpeed; }
 }

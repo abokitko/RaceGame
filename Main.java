@@ -72,10 +72,14 @@ public class Main {
         }
         do {
             for(int i = 0; i < transportList.size(); i++){
+                if(i!=0) System.out.print("Enemy: " );
+                else System.out.print("You:   ");
+
                 if(lena.tick(transportList.get(i)) != 0)
                     lena.showInfo(transportList.get(i));
                 else {
                     flag = false;
+                    System.out.println("Winner! Race is over!");
                     break;
                 }
             }

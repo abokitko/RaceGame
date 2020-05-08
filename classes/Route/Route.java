@@ -12,6 +12,11 @@ public class Route {
         this.routeLengthVectors = vectorList.size();
     }
 
+    /**
+     * Count length of the route in points
+     * @param vectorList
+     * @return int (sum of the points)
+     */
     int countRouteLengthP(List<Vector> vectorList){
         int sum = 0;
         for (int i = 0; i < vectorList.size(); i++){

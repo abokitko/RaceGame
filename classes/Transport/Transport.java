@@ -19,27 +19,25 @@ public class Transport {
         this.name = name;
     }
 
+    /**
+     * According to the wheels and engine count max possible transport speed
+     * @param engine
+     * @param wheels
+     * @return int (max Speed)
+     */
     int countMaxSpeed(Engine engine, Wheels wheels){
         return (int) (engine.getEngineMaxSpeed() * (1 - wheels.getWheelCoeffFriction()));
     }
 
     //getters
-    public Point getCurrentPosition() {
-        return currentPosition;
-    }
+    public Point getCurrentPosition() { return currentPosition; }
     public int getRealSpeed() { return realSpeed; }
-    public int getTransportMaxSpeed() {
-        return transportMaxSpeed;
-    }
-    public String getName() {
-        return name;
-    }
+    public int getTransportMaxSpeed() { return transportMaxSpeed; }
+    public String getName() { return name; }
     public Engine getEngine() { return engine;}
 
     //setters
-    public void setCurrentPosition(Point currentPosition) {
-        this.currentPosition = currentPosition;
-    }
+    public void setCurrentPosition(Point currentPosition) { this.currentPosition = currentPosition; }
     public void setRealSpeed(int realSpeed) { this.realSpeed = realSpeed; }
     public void setName(String name) { this.name = name; }
     public void setEngine(Engine engine) { this.engine = engine;}
