@@ -1,10 +1,10 @@
 package classes.Engine;
 
-public class dieselEngine extends Engine{
+public class DieselEngine extends Engine{
 
     private String fuelType;
 
-    public dieselEngine(String engineName, int engineMaxSpeed) {
+    public DieselEngine(String engineName, int engineMaxSpeed) {
         super(engineName, engineMaxSpeed);
     }
 }
