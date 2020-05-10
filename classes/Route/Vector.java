@@ -13,24 +13,22 @@ public class Vector {
         this.pointList = pointList;
         this.material = material;
         this.vectorLength = pointList.size();
-        this.vectorMaxSpeed = countVectorMaxSpeed(material);
+        this.vectorMaxSpeed = getVectorMaxSpeed();
     }
 
+    public String getMaterial() { return material; }
+    public int getVectorLength() { return vectorLength; }
+    public List<Point> getPointList() { return pointList; }
+
     /**
-     * According to the material set max speed allowed on the vector
-     * @param material
+     * According to the material get max speed allowed on the vector
      * @return int (max speed on the vector)
      */
-    int countVectorMaxSpeed(String material){
+    public int getVectorMaxSpeed() {
         if (material == "ice")  return 1;
         if (material == "ground") return 2;
         if (material == "road") return 3;
         if (material == "highway") return 5;
         else return 0;
     }
-
-    public String getMaterial() { return material; }
-    public int getVectorLength() { return vectorLength; }
-    public List<Point> getPointList() { return pointList; }
-    public int getVectorMaxSpeed() { return vectorMaxSpeed; }
 }
