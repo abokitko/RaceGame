@@ -21,7 +21,7 @@ public class TransportFactory {
      * @param name
      * @return object (Transport/heir of Transport)
      */
-    public Transport createTransport(String name) throws NoSuchTransport, CreatingProblems {
+    public Transport createTransport(String name) throws NoSuchTransport, ObjectCreationException {
         System.out.println();
         try {
             Class<?> transportClass = Class.forName("classes.Transport." + name);
@@ -38,7 +38,7 @@ public class TransportFactory {
                 throw new NoSuchTransport("There is no such transport");
             }
             catch( IllegalAccessException | InvocationTargetException | InstantiationException e){
-                throw new CreatingProblems("Check your inputs again, there are some creating problems");
+                throw new ObjectCreationException("Check your inputs again, there are some creating problems");
         }
     }
 

@@ -10,13 +10,9 @@ import java.util.InputMismatchException;
 import java.util.List;
 import java.util.Scanner;
 
-class NotANumber extends InputMismatchException{
-    public NotANumber(String s) {
-        super(s);
-    }
-}
+
 public class Main {
-    public static void main(String[] args) throws NoSuchTransport, CreatingProblems, InputMismatchException {
+    public static void main(String[] args) throws NoSuchTransport, ObjectCreationException, InputMismatchException {
         Scanner scan = new Scanner(System.in);
         System.out.println("How many vectors do you want to set? ");
 
@@ -78,7 +74,7 @@ public class Main {
             }catch(NoSuchTransport e){
                 e.printStackTrace();
                 System.exit(1);
-            }catch (CreatingProblems e) {
+            }catch (ObjectCreationException e) {
                 e.printStackTrace();
                 System.exit(1);
             }
@@ -97,7 +93,7 @@ public class Main {
                 } catch(NoSuchTransport e){
                     System.out.println(e.getMessage());
                     System.exit(1);
-                }catch (CreatingProblems e) {
+                }catch (ObjectCreationException e) {
                     e.printStackTrace();
                     System.exit(1);
                 }
