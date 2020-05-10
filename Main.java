@@ -20,23 +20,26 @@ public class Main {
         Scanner scan = new Scanner(System.in);
         System.out.println("How many vectors do you want to set? ");
 
-        int vectors = scan.nextInt();
+        int vectors = 0;
+        try{
+            vectors = scan.nextInt();
+        } catch(InputMismatchException e){
+            System.out.println("It's not an integer number");
+            System.exit(1);
+        }
+
         ArrayList<Vector> vectorList = new ArrayList<>();
 
         for(int j = 0; j < vectors; j++){
 
             System.out.print("How many points do you want to set on " + (j+1) +" vector? ");
             int points = 0;
-            boolean flag = true;
-            while(flag){
                 try{
                     points = scan.nextInt();
                 } catch(InputMismatchException e){
-                    System.out.println("Try again");
-                    continue;
+                    System.out.println("It's not an integer number");
+                    System.exit(1);
                 }
-                flag = false;
-            }
 
             ArrayList<Point> pointList = new ArrayList<>();
             for(int i = 0; i < points; i++){
