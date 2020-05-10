@@ -1,10 +1,9 @@
 package classes.Transport;
-import classes.Engine.Engine;
-import classes.Transport.*;
-import classes.Wheels.Wheels;
+import classes.Engine.*;
+import classes.Wheels.*;
+import classes.Exceptions.*;
 
 import java.lang.reflect.InvocationTargetException;
-import java.util.ArrayList;
 
 
 public class TransportFactory {
@@ -22,7 +21,7 @@ public class TransportFactory {
      * @param name
      * @return object (Transport/heir of Transport)
      */
-    public Transport createTransport(String name) {
+    public Transport createTransport(String name) throws NoSuchTransport, CreatingProblems {
         System.out.println();
         try {
             Class<?> transportClass = Class.forName("classes.Transport." + name);
@@ -35,10 +34,12 @@ public class TransportFactory {
             //create
             Object[] args = {yourName, engine, wheels};
             return (Transport) transportClass.getConstructor(String.class, Engine.class, Wheels.class).newInstance(args);
-        }   catch (ClassNotFoundException | IllegalAccessException | InvocationTargetException | InstantiationException | NoSuchMethodException e) {
-            e.printStackTrace();
-            throw new RuntimeException();
+        }   catch (ClassNotFoundException | NoSuchMethodException  e) {
+                throw new NoSuchTransport("There is no such transport");
             }
+            catch( IllegalAccessException | InvocationTargetException | InstantiationException e){
+                throw new CreatingProblems("Check your inputs again, there are some creating problems");
+        }
     }
 
     public void setEngineList(Engine[] engineList) {

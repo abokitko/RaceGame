@@ -2,13 +2,10 @@ package classes;
 import classes.Route.*;
 import classes.Transport.*;
 
-import java.util.List;
-import java.util.Scanner;
 
 public class SuperDuperVisor {
 
     private Route route;
-    private String choice;
     private Transport yourTransport;
 
     public SuperDuperVisor(Route route) {

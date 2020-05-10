@@ -1,27 +1,42 @@
 import classes.*;
-import classes.Engine.Engine;
-import classes.Route.Route;
-import classes.Route.Vector;
-import classes.Route.Point;
+import classes.Engine.*;
+import classes.Route.*;
 import classes.Transport.*;
-import classes.Wheels.Wheels;
+import classes.Wheels.*;
+import classes.Exceptions.*;
 
 import java.util.ArrayList;
+import java.util.InputMismatchException;
 import java.util.List;
 import java.util.Scanner;
 
+class NotANumber extends InputMismatchException{
+    public NotANumber(String s) {
+        super(s);
+    }
+}
 public class Main {
-    public static void main(String[] args) throws Exception {
+    public static void main(String[] args) throws NoSuchTransport, CreatingProblems, InputMismatchException {
         Scanner scan = new Scanner(System.in);
-
         System.out.println("How many vectors do you want to set? ");
-        int vectors = scan.nextInt();
 
+        int vectors = scan.nextInt();
         ArrayList<Vector> vectorList = new ArrayList<>();
+
         for(int j = 0; j < vectors; j++){
 
             System.out.print("How many points do you want to set on " + (j+1) +" vector? ");
-            int points = scan.nextInt();
+            int points = 0;
+            boolean flag = true;
+            while(flag){
+                try{
+                    points = scan.nextInt();
+                } catch(InputMismatchException e){
+                    System.out.println("Try again");
+                    continue;
+                }
+                flag = false;
+            }
 
             ArrayList<Point> pointList = new ArrayList<>();
             for(int i = 0; i < points; i++){
@@ -53,7 +68,18 @@ public class Main {
             Scanner in = new Scanner(System.in);
             System.out.print("Which car do you prefer? (Truck, PassengerCar, SportCar): ");
             String name = in.next();
-            Transport yourTransport = Charlies.createTransport(name);
+
+            Transport yourTransport = new Transport();
+            try {
+                 yourTransport = Charlies.createTransport(name);
+            }catch(NoSuchTransport e){
+                e.printStackTrace();
+                System.exit(1);
+            }catch (CreatingProblems e) {
+                e.printStackTrace();
+                System.exit(1);
+            }
+
             lena.setYourTransport(yourTransport);
             System.out.println("Your car is " + name);
             transportList.add(yourTransport);
@@ -61,10 +87,19 @@ public class Main {
             System.out.print("How many players(enemies) do you want? ");
             int k = in.nextInt();
             for(int i = 0; i<k; i++){
-                System.out.print("Truck/PassengerCar/SportCar ");
+                System.out.print("Truck/PassengerCar/SportCar: ");
                 String enemyName = in.next();
-                transportList.add(Charlies.createTransport(enemyName));
+                try {
+                    transportList.add(Charlies.createTransport(enemyName));
+                } catch(NoSuchTransport e){
+                    System.out.println(e.getMessage());
+                    System.exit(1);
+                }catch (CreatingProblems e) {
+                    e.printStackTrace();
+                    System.exit(1);
+                }
             }
+
 
         boolean flag = true;
         for(int i = 0; i < transportList.size(); i++){

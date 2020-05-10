@@ -19,6 +19,7 @@ public class Transport {
         this.name = name;
     }
 
+    public Transport() {}
     //getters
     /**
      * According to the wheels and engine count max possible transport speed
