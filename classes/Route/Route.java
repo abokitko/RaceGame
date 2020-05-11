@@ -8,25 +8,20 @@ public class Route {
 
     public Route(List<Vector> vectorList) {
         this.vectorList = vectorList;
-        this.routeLengthPoints = countRouteLengthP(vectorList);
+        this.routeLengthPoints = getRouteLengthP();
         this.routeLengthVectors = vectorList.size();
     }
 
     /**
      * Count length of the route in points
-     * @param vectorList
      * @return int (sum of the points)
      */
-    int countRouteLengthP(List<Vector> vectorList){
+    public int getRouteLengthP() {
         int sum = 0;
         for (int i = 0; i < vectorList.size(); i++){
             sum += vectorList.get(i).getVectorLength();
         }
         return sum;
-    }
-
-    public int getRouteLengthP() {
-        return routeLengthPoints;
     }
     public int getRouteLengthV() {
         return routeLengthVectors;
